@@ -5,7 +5,6 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
-
     const plugins = [
         new HtmlWebpackPlugin({
             template: paths.html,
@@ -26,5 +25,6 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
             openAnalyzer: false,
         }));
     }
+
     return plugins;
 }
