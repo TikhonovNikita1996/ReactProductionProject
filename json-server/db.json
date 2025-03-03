@@ -25,5 +25,15 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "first": "Никита",
+    "lastname": "Тихонов",
+    "age": 29,
+    "currency": "RUB",
+    "country": "Russia",
+    "city": "Vladimir",
+    "username": "admin",
+    "avatar": "https://i.ytimg.com/vi/-djeeBlIYFI/maxresdefault.jpg"
+  }
+
 }
