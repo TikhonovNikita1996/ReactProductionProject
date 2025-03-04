@@ -3,19 +3,19 @@
     {
       "id": "1",
       "title": "json-server",
-      "userId": 1
+      "userId": "1"
     },
     {
       "id": "2",
       "title": "json-server",
-      "userId": 2
+      "userId": "2"
     }
   ],
   "comments": [
     {
       "id": "1",
       "body": "some comment",
-      "postId": 1
+      "postId": "1"
     }
   ],
   "users": [
@@ -26,14 +26,13 @@
     }
   ],
   "profile": {
-    "first": "Никита",
-    "lastname": "Тихонов",
-    "age": 29,
+    "first": "Тимур1211",
+    "lastname": "Ульби211",
+    "age": 2211,
     "currency": "RUB",
-    "country": "Russia",
-    "city": "Vladimir",
-    "username": "admin",
-    "avatar": "https://i.ytimg.com/vi/-djeeBlIYFI/maxresdefault.jpg"
+    "country": "Belarus",
+    "city": "Moscow",
+    "username": "admin213",
+    "avatar": "https://yt3.ggpht.com/ytc/AAUvwngFzM_Rf6MNwOnFcuphoj93k7VFjlIrj-kSMxbh=s900-c-k-c0x00ffffff-no-rj"
   }
-
 }
