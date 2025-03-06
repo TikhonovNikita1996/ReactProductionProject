@@ -6,7 +6,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import ArticleDetailsPage from './ArticleDetailsPage';
 
 export default {
-    title: 'shared/ArticleDetailsPage',
+    title: 'pages/ArticleDetailsPage',
     component: ArticleDetailsPage,
     argTypes: {},
 } as ComponentMeta<typeof ArticleDetailsPage>;
