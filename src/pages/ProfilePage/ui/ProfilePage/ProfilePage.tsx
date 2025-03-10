@@ -21,8 +21,8 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { d } from '@pmmmwh/react-refresh-webpack-plugin/types/options';
 import { useParams } from 'react-router-dom';
-import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
-import {Page} from "widgets/Page/Page";
+import { Page } from 'widgets/Page/Page';
+import { ProfilePageHeader } from '../ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducersList = {
     profile: profileReducer,
