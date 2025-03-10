@@ -22,7 +22,7 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { d } from '@pmmmwh/react-refresh-webpack-plugin/types/options';
 import { useParams } from 'react-router-dom';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
-import {Page} from "shared/ui/Page/Page";
+import {Page} from "widgets/Page/Page";
 
 const reducers: ReducersList = {
     profile: profileReducer,
