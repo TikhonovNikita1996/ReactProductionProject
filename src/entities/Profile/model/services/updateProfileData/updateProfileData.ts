@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Profile, ValidateProfileError } from '../../types/profile';
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
-import { validateProfile } from '../validateProfile/validateProfile';
+import { validateProfileData } from '../validateProfileData/validateProfileData';
 
 export const updateProfileData = createAsyncThunk<
     Profile,
@@ -15,14 +15,21 @@ export const updateProfileData = createAsyncThunk<
 
             const formData = getProfileForm(getState());
 
-            const errors = validateProfile(formData);
+            const errors = validateProfileData(formData);
 
             if (errors.length) {
                 return rejectWithValue(errors);
             }
 
             try {
-                const response = await extra.api.put<Profile>(`/profile/${formData?.id}`, formData);
+                const response = await extra.api.put<Profile>(
+                    `/profile/${formData?.id}`,
+                    formData,
+                );
+
+                if (!response.data) {
+                    throw new Error();
+                }
 
                 return response.data;
             } catch (e) {

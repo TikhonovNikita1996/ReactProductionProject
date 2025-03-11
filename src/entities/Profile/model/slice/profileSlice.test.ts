@@ -1,14 +1,14 @@
-import {
-    profileActions, profileReducer, ProfileSchema, updateProfileData, ValidateProfileError,
-} from 'entities/Profile';
 import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
+import { updateProfileData } from '../services/updateProfileData/updateProfileData';
+import { ProfileSchema, ValidateProfileError } from '../types/profile';
+import { profileActions, profileReducer } from './profileSlice';
 
 const data = {
     username: 'admin',
     age: 22,
     country: Country.Ukraine,
-    lastname: 'ulbi tv',
+    lastname: 'aaa',
     first: 'asd',
     city: 'asf',
     currency: Currency.USD,
@@ -53,7 +53,7 @@ describe('profileSlice.test', () => {
     test('test update profile service pending', () => {
         const state: DeepPartial<ProfileSchema> = {
             isLoading: false,
-            validationErrors: [ValidateProfileError.SERVER_ERROR],
+            validateErrors: [ValidateProfileError.SERVER_ERROR],
         };
 
         expect(profileReducer(

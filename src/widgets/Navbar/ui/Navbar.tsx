@@ -5,10 +5,10 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './Navbar.module.scss';
-import {AppLink, AppLinkTheme} from 'shared/ui/AppLink/AppLink';
-import {RoutePath} from "shared/config/routeConfig/routeConfig";
-import {Text, TextTheme} from "shared/ui/Text/Text";
 
 interface NavbarProps {
     className?: string;
@@ -37,7 +37,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             <header className={classNames(cls.Navbar, {}, [className])}>
                 <Text
                     className={cls.appName}
-                    title={t('Production App')}
+                    title={t('App')}
                     theme={TextTheme.INVERTED}
                 />
                 <AppLink
@@ -59,7 +59,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     }
 
     return (
-        <div className={classNames(cls.Navbar, {}, [className])}>
+        <header className={classNames(cls.Navbar, {}, [className])}>
             <Button
                 theme={ButtonTheme.CLEAR_INVERTED}
                 className={cls.links}
@@ -73,6 +73,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                     onClose={onCloseModal}
                 />
             )}
-        </div>
+        </header>
     );
 });
