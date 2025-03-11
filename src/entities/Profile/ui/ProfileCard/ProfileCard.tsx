@@ -109,12 +109,14 @@ export const ProfileCard = (props: ProfileCardProps) => {
             <Input
                 value={data?.username}
                 placeholder={t('Введите имя пользователя')}
+                className={cls.input}
                 onChange={onChangeUsername}
                 readonly={readonly}
             />
             <Input
                 value={data?.avatar}
                 placeholder={t('Введите ссылку на аватар')}
+                className={cls.input}
                 onChange={onChangeAvatar}
                 readonly={readonly}
             />

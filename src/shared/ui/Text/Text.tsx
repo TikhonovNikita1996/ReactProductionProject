@@ -62,4 +62,3 @@ export const Text = memo((props: TextProps) => {
         </div>
     );
 });
-
