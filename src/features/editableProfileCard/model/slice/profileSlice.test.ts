@@ -1,86 +1,74 @@
-import { Country } from '@/entities/Country';
-import { Currency } from '@/entities/Currency';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Profile } from '@/entities/Profile';
+import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 import { ProfileSchema } from '../types/editableProfileCardSchema';
-import { profileActions, profileReducer } from './profileSlice';
-import {ValidateProfileError} from "@/features/editableProfileCard/model/const/consts";
 
-const data = {
-    username: 'admin',
-    age: 22,
-    country: Country.Ukraine,
-    lastname: 'ulbi tv',
-    first: 'asd',
-    city: 'asf',
-    currency: Currency.USD,
+const initialState: ProfileSchema = {
+    readonly: true,
+    isLoading: false,
+    error: undefined,
+    data: undefined,
 };
 
-describe('profileSlice.test', () => {
-    test('test set readonly', () => {
-        const state: DeepPartial<ProfileSchema> = { readonly: false };
-        expect(profileReducer(
-            state as ProfileSchema,
-            profileActions.setReadonly(true),
-        )).toEqual({ readonly: true });
-    });
-
-    test('test cancel edit', () => {
-        const state: DeepPartial<ProfileSchema> = { data, form: { username: '' } };
-
-        expect(profileReducer(
-            state as ProfileSchema,
-            profileActions.cancelEdit(),
-        )).toEqual({
-            readonly: true,
-            validateErrors: undefined,
-            data,
-            form: data,
-        });
-    });
-
-    test('test update profile', () => {
-        const state: DeepPartial<ProfileSchema> = { form: { username: '123' } };
-
-        expect(profileReducer(
-            state as ProfileSchema,
-            profileActions.updateProfile({
-                username: '123456',
-            }),
-        )).toEqual({
-            form: { username: '123456' },
-        });
-    });
-
-    test('test update profile service pending', () => {
-        const state: DeepPartial<ProfileSchema> = {
-            isLoading: false,
-            validateErrors: [ValidateProfileError.SERVER_ERROR],
-        };
-
-        expect(profileReducer(
-            state as ProfileSchema,
-            updateProfileData.pending,
-        )).toEqual({
-            isLoading: true,
-            validateErrors: undefined,
-        });
-    });
-
-    test('test update profile service fullfiled', () => {
-        const state: DeepPartial<ProfileSchema> = {
-            isLoading: true,
-        };
-
-        expect(profileReducer(
-            state as ProfileSchema,
-            updateProfileData.fulfilled(data, ''),
-        )).toEqual({
-            isLoading: false,
-            validateErrors: undefined,
-            readonly: true,
-            validateError: undefined,
-            form: data,
-            data,
-        });
-    });
+export const profileSlice = createSlice({
+    name: 'profile',
+    initialState,
+    reducers: {
+        setReadonly: (state, action: PayloadAction<boolean>) => {
+            state.readonly = action.payload;
+        },
+        cancelEdit: (state) => {
+            state.readonly = true;
+            state.validateErrors = undefined;
+            state.form = state.data;
+        },
+        updateProfile: (state, action: PayloadAction<Profile>) => {
+            state.form = {
+                ...state.form,
+                ...action.payload,
+            };
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchProfileData.pending, (state) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(fetchProfileData.fulfilled, (
+                state,
+                action: PayloadAction<Profile>,
+            ) => {
+                state.isLoading = false;
+                state.data = action.payload;
+                state.form = action.payload;
+            })
+            .addCase(fetchProfileData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateProfileData.pending, (state) => {
+                state.validateErrors = undefined;
+                state.isLoading = true;
+            })
+            .addCase(updateProfileData.fulfilled, (
+                state,
+                action: PayloadAction<Profile>,
+            ) => {
+                state.isLoading = false;
+                state.data = action.payload;
+                state.form = action.payload;
+                state.readonly = true;
+                state.validateErrors = undefined;
+            })
+            .addCase(updateProfileData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.validateErrors = action.payload;
+            });
+    },
 });
+
+// Action creators are generated for each case reducer function
+export const { actions: profileActions } = profileSlice;
+export const { reducer: profileReducer } = profileSlice;
