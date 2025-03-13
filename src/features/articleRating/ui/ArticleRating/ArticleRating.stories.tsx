@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+import withMock from 'storybook-addon-mock';
 import ArticleRating from './ArticleRating';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import withMock from "storybook-addon-mock";
-import {Article} from "@/entities/Article";
+import { Article } from '@/entities/Article';
 
 export default {
     title: 'shared/ArticleRating',
@@ -54,4 +54,3 @@ Normal.parameters = {
         },
     ],
 };
-
