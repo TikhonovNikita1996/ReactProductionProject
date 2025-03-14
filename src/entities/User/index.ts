@@ -6,7 +6,7 @@ export {
     getUserInited,
 } from './model/selectors/getUserInited/getUserInited';
 
-export { isUserAdmin, isUserManager, getUserRoles } from './model/selectors/roleSelectors/roleSelectors';
+export { isUserAdmin, isUserManager, getUserRoles } from './model/selectors/roleSelectors';
 
 export {
     userReducer,
@@ -17,5 +17,4 @@ export type {
     UserSchema,
     User,
 } from './model/types/user';
-
-export { UserRole } from '@/entities/User/model/consts/consts';
+export { UserRole } from './model/consts/userConsts';

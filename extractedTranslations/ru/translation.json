@@ -1,6 +1,5 @@
 {
-  "Production App": "Production App",
-  "Production app": "Production app",
+  "ProductionApp": "ProductionApp",
   "decrement": "decrement",
   "increment": "increment",
   "throw error": "throw error",
