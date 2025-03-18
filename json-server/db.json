@@ -740,7 +740,10 @@
         "isArticleRatingEnabled": false,
         "isCounterEnabled": true
       },
-      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg"
+      "avatar": "https://s1.1zoom.ru/big3/992/367659-alexfas01.jpg",
+      "jsonSettings": {
+        "isArticlesPageWasOpened": true
+      }
     },
     {
       "id": "4",
